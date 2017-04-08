@@ -9,18 +9,20 @@
 	-- Pré-condição: o programa foi inicializado
 	-- Pós-condição: o programa terminou sua execução
 	function main()
-		print("Calculadora de media de disciplina")
-		local dadosDisciplina = leDados()
+		print("Calculadora de media de disciplina")		
+		local dadosDisciplina = {}
+		leDados(dadosDisciplina)
 		local media = calculaMedia(dadosDisciplina)
 		imprimeMedia(media)
 	end
 	
-	-- Função que cria 'dadosDisciplina' e lê do input as informações da disciplina cuja média será calculada
-	-- Pré-condição: não há
+	-- Função que lê do input as informações da disciplina cuja média será calculada
+	-- Pré-condição: dadosDisciplina existe e não é nulo (checado na linha 24)
 	-- Pós-condição: dados necessários para calcular a média de acordo com o critério apontado estão presentes
-	function leDados()
-		local dadosDisciplina = {}
-		
+	function leDados(dadosDisciplina)
+		--Checa se dadosDisciplina é nulo
+		assert(dadosDisciplina ~= nil)
+	
 		-- Leitura do critério
 		print("Informe o criterio da disciplina:")
 		dadosDisciplina["criterio"] = io.read("*n")
@@ -66,7 +68,7 @@
 	end
 	
 	-- Função que calcula a média da disciplina
-	-- Pré-condição: dadosDisciplina não é nulo (checado pela assertiva na linha 73) e todos os campos necessários para o cálculo do critério estarem preenchidos em dadosDisciplina
+	-- Pré-condição: dadosDisciplina não é nulo (checado pela assertiva na linha 75) e todos os campos necessários para o cálculo do critério estarem preenchidos em dadosDisciplina
 	-- Pós-condição: média não ser nula (a menos que tenha ocorrido algum erro), conforme checado pela assertiva na linha 83
 	function calculaMedia(dadosDisciplina)
 		-- Checa se dadosDisciplina é nulo
@@ -209,7 +211,7 @@
 	end
 	
 	-- Função que imprime na tela a média calculada
-	-- Pré-condição: a média não ser nula (checada pela assertiva na linha 91)
+	-- Pré-condição: a média não ser nula (checada pela assertiva na linha 217)
 	-- Pós-condição: não há
 	function imprimeMedia(media)
 		assert(media ~= nil, "A media esta nula no comeco da funcao de imprimir a media na tela")
