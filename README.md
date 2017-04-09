@@ -5,6 +5,7 @@ O programa calcula a média de uma disciplina, através do cálculo da média pa
 
 ## Diagrama
 ![Diagrama](https://github.com/renandafonte/INF1629-G1/raw/master/diagrama.jpg)
+Diagrama feito através do site draw.io
 
 ## Livro diário
 03/04 - Estudo de Lua
