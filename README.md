@@ -15,4 +15,6 @@ O programa calcula a média de uma disciplina, através do cálculo da média pa
 
 06/04 - Definição do tema
 
-08/04 - Início do projeto; criação do diagrama
+08/04 - Início do projeto, criação do diagrama, criação das funções main, leDados, calculaMedia e imprimeMedia
+
+09/04 - Mudanças no diagrama, separação do código em mais funções
