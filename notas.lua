@@ -2,8 +2,8 @@
 -- Autor: Renan da Fonte
 -- Data de criação: 08/04/2017
 -- Data de modificação: 09/04/2017
--- Versão: 0.2
--- Tamanho: 322 linhas
+-- Versão: 0.3
+-- Tamanho: 324 linhas
 
 	-- Função principal, que coordena a execução do programa
 	-- Pré-condição: o programa foi inicializado
@@ -61,14 +61,14 @@
 	function leNotasCriterio10(dadosDisciplina)	
 		assert(dadosDisciplina ~= nil, "A variavel dadosDisciplina esta nula no comeco da funcao leNotasCriterio10")
 		
-		dadosDisciplina["parteTeorica"] = {}
-		dadosDisciplina["parteLaboratorio"] = {}
+		dadosDisciplina["parteTeorica"] = {criterio = 4}
+		dadosDisciplina["parteLaboratorio"] = {criterio = 3}
 		
 		print("\nSobre a parte teorica da disciplina:")
-		dadosDisciplina["parteTeorica"] = leDados(dadosDisciplina["parteTeorica"])
+		leNotas(dadosDisciplina["parteTeorica"])
 		print("\nSobre a parte de laboratorio da disciplina:")
-		dadosDisciplina["parteLaboratorio"] = leDados(dadosDisciplina["parteLaboratorio"])
-		assert((dadosDisciplina["parteTeorica"] ~= nil) and (dadosDisciplina["parteLaboratorio"] ~= nil), "Os índices parteTeorica e/ou parteLaboratorio de dadosDisciplina estao nulos ao final de leNotasCriterio10")
+		leNotas(dadosDisciplina["parteLaboratorio"])
+		assert((dadosDisciplina["parteTeorica"] ~= nil) and (dadosDisciplina["parteLaboratorio"] ~= nil), "Os indices parteTeorica e/ou parteLaboratorio de dadosDisciplina estao nulos ao final de leNotasCriterio10")
 		
 		return dadosDisciplina
 	end
@@ -104,11 +104,13 @@
 			print("Informe a nota do projeto:")
 			dadosDisciplina["notaProjeto"] = io.read("*n")
 		end
+		
+		return dadosDisciplina
 	end
 	
 	-- Função que calcula a média da disciplina
 	-- Pré-condição: dadosDisciplina não é nulo (checado pela assertiva na linha 114) e todos os campos necessários para o cálculo do critério estarem preenchidos em dadosDisciplina
-	-- Pós-condição: média não ser nula (a menos que tenha ocorrido algum erro), conforme checado pela assertiva na linha 142
+	-- Pós-condição: média não ser nula (a menos que tenha ocorrido algum erro), conforme checado pela assertiva na linha 144
 	function calculaMedia(dadosDisciplina)
 		-- Checa se dadosDisciplina é nulo
 		assert(dadosDisciplina ~= nil, "A variavel dadosDisciplina esta nula no comeco da funcao calculaMedia")
@@ -144,8 +146,8 @@
 	end
 
 	-- Função que calcula a média de disciplinas que não possuem G3
-	-- Pré-condição: dadosDisciplina existe e não é nulo, assim como dadosDisciplina["notaG1"] e dadosDisciplina["notaG2"], conforme checado na assertiva presente na linha 150
-	-- Pós-condição: média não é nula, conforme checado na assertiva presente na linha 182
+	-- Pré-condição: dadosDisciplina existe e não é nulo, assim como dadosDisciplina["notaG1"] e dadosDisciplina["notaG2"], conforme checado na assertiva presente na linha 152
+	-- Pós-condição: média não é nula, conforme checado na assertiva presente na linha 184
 	function calculaCriteriosSemG3(dadosDisciplina)
 		assert((dadosDisciplina ~= nil) and (dadosDisciplina["notaG1"] ~= nil) and (dadosDisciplina["notaG2"] ~= nil), "A variavel dadosDisciplina ou seus indices notaG1 e/ou notaG2 estao nulos no comeco da funcao calculaCriteriosSemG3")
 	
@@ -184,8 +186,8 @@
 	end
 	
 	-- Função que calcula a média de disciplinas que possuem G3 e G4
-	-- Pré-condição: dadosDisciplina existe e não é nulo, assim como dadosDisciplina["notaG1"], dadosDisciplina["notaG2"], dadosDisciplina["notaG3"] e dadosDisciplina["notaG4"], conforme checado na assertiva presente na linha 190
-	-- Pós-condição: média não é nula, conforme checado na assertiva presente na linha 230
+	-- Pré-condição: dadosDisciplina existe e não é nulo, assim como dadosDisciplina["notaG1"], dadosDisciplina["notaG2"], dadosDisciplina["notaG3"] e dadosDisciplina["notaG4"], conforme checado na assertiva presente na linha 192
+	-- Pós-condição: média não é nula, conforme checado na assertiva presente na linha 232
 	function calculaCriteriosComG3EG4(dadosDisciplina)
 		assert((dadosDisciplina ~= nil) and (dadosDisciplina["notaG1"] ~= nil) and (dadosDisciplina["notaG2"] ~= nil) and (dadosDisciplina["notaG3"] ~= nil) and (dadosDisciplina["notaG4"] ~= nil), "A variavel dadosDisciplina ou seus indices notaG1, notaG2, notaG3 e/ou notaG4 estao nulos no comeco da funcao calculaCriteriosComG3EG4")
 	
@@ -232,8 +234,8 @@
 	end
 
 	-- Função que calcula a média de disciplinas que possuem G3 e G4
-	-- Pré-condição: dadosDisciplina existe e não é nulo, assim como dadosDisciplina["notaG1"], dadosDisciplina["notaG2"] e dadosDisciplina["notaG3"], conforme checado na assertiva presente na linha 238
-	-- Pós-condição: média não é nula, conforme checado na assertiva presente na linha 287
+	-- Pré-condição: dadosDisciplina existe e não é nulo, assim como dadosDisciplina["notaG1"], dadosDisciplina["notaG2"] e dadosDisciplina["notaG3"], conforme checado na assertiva presente na linha 240
+	-- Pós-condição: média não é nula, conforme checado na assertiva presente na linha 289
 	function calculaCriteriosSemG4(dadosDisciplina)
 		assert((dadosDisciplina ~= nil) and (dadosDisciplina["notaG1"] ~= nil) and (dadosDisciplina["notaG2"] ~= nil) and (dadosDisciplina["notaG3"] ~= nil), "A variavel dadosDisciplina ou seus indices notaG1, notaG2 e/ou notaG2 estao nulos no comeco da funcao calculaCriteriosSemG4")
 		
@@ -289,8 +291,8 @@
 	end
 	
 	-- Função que calcula a média de disciplinas que possuem projeto
-	-- Pré-condição: dadosDisciplina existe e não é nulo, assim como dadosDisciplina["notaG1"], dadosDisciplina["notaG2"], dadosDisciplina["notaG3"] e dadosDisciplina["notaProjeto"], conforme checado na assertiva presente na linha 295
-	-- Pós-condição: média não é nula, conforme checado na assertiva presente na linha 297
+	-- Pré-condição: dadosDisciplina existe e não é nulo, assim como dadosDisciplina["notaG1"], dadosDisciplina["notaG2"], dadosDisciplina["notaG3"] e dadosDisciplina["notaProjeto"], conforme checado na assertiva presente na linha 297
+	-- Pós-condição: média não é nula, conforme checado na assertiva presente na linha 299
 	function calculaCriteriosComProjeto(dadosDisciplina)
 		assert((dadosDisciplina ~= nil) and (dadosDisciplina["notaG1"] ~= nil) and (dadosDisciplina["notaG2"] ~= nil) and (dadosDisciplina["notaG3"] ~= nil) and (dadosDisciplina["notaProjeto"] ~= nil), "A variavel dadosDisciplina ou seus indices notaG1, notaG2, notaG3 e/ou notaProjeto estao nulos no comeco da funcao calculaCriteriosComProjeto")
 		local media = (dadosDisciplina["notaG1"] + dadosDisciplina["notaG2"] + dadosDisciplina["notaG3"] + dadosDisciplina["notaProjeto"])/4
@@ -299,8 +301,8 @@
 	end
 	
 	-- Função que calcula a média de disciplinas que possuem laboratório
-	-- Pré-condição: dadosDisciplina existe e não é nulo, assim como dadosDisciplina["parteTeorica"] e dadosDisciplina["parteLaboratorio"], conforme checado na assertiva presente na linha 305
-	-- Pós-condição: média não é nula, conforme checado na assertiva presente na linha 310
+	-- Pré-condição: dadosDisciplina existe e não é nulo, assim como dadosDisciplina["parteTeorica"] e dadosDisciplina["parteLaboratorio"], conforme checado na assertiva presente na linha 307
+	-- Pós-condição: média não é nula, conforme checado na assertiva presente na linha 312
 	function calculaCriteriosComLaboratorio(dadosDisciplina)
 		assert((dadosDisciplina ~= nil) and (dadosDisciplina["parteTeorica"] ~= nil) and (dadosDisciplina["parteLaboratorio"] ~= nil), "A variavel dadosDisciplina ou seus indices parteTeorica e/ou parteLaboratorio estao nulos no comeco da funcao calculaCriteriosComLaboratorio")
 		local mediaTeorica = calculaMedia(dadosDisciplina["parteTeorica"])
@@ -312,7 +314,7 @@
 	end
 	
 	-- Função que imprime na tela a média calculada
-	-- Pré-condição: a média não ser nula (checada pela assertiva na linha 318)
+	-- Pré-condição: a média não ser nula (checada pela assertiva na linha 320)
 	-- Pós-condição: não há
 	function imprimeMedia(media)
 		assert(media ~= nil, "A media esta nula no comeco da funcao de imprimir a media na tela")
